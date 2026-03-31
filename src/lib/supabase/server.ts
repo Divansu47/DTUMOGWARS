@@ -12,7 +12,20 @@ export function createClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(
+          cookiesToSet: Array<{
+            name: string
+            value: string
+            options?: {
+              path?: string
+              domain?: string
+              maxAge?: number
+              secure?: boolean
+              httpOnly?: boolean
+              sameSite?: 'lax' | 'strict' | 'none'
+            }
+          }>
+        ): void {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
@@ -37,7 +50,20 @@ export function createAdminClient() {
         getAll() {
           return cookieStore.getAll()
         },
-        setAll(cookiesToSet) {
+        setAll(
+          cookiesToSet: Array<{
+            name: string
+            value: string
+            options?: {
+              path?: string
+              domain?: string
+              maxAge?: number
+              secure?: boolean
+              httpOnly?: boolean
+              sameSite?: 'lax' | 'strict' | 'none'
+            }
+          }>
+        ): void {
           try {
             cookiesToSet.forEach(({ name, value, options }) =>
               cookieStore.set(name, value, options)
