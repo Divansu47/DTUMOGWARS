@@ -1,0 +1,251 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #050508;
+    color: #e8e8f5;
+    font-family: var(--font-body);
+    font-size: 15px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(0, 245, 255, 0.2);
+    color: #00f5ff;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0d0d14;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #252535;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a55;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass {
+    background: rgba(18, 18, 28, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .glass-strong {
+    background: rgba(26, 26, 40, 0.95);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Neon text effects */
+  .text-glow-cyan {
+    text-shadow: 0 0 20px rgba(0, 245, 255, 0.6);
+  }
+
+  .text-glow-violet {
+    text-shadow: 0 0 20px rgba(124, 58, 237, 0.6);
+  }
+
+  .text-glow-pink {
+    text-shadow: 0 0 20px rgba(255, 0, 110, 0.6);
+  }
+
+  /* Gradient text */
+  .gradient-text-cyan {
+    background: linear-gradient(135deg, #00f5ff 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-text-fire {
+    background: linear-gradient(135deg, #ff006e 0%, #ffbe0b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Profile card hover shine effect */
+  .card-shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-shine::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 50%,
+      transparent 100%
+    );
+    transition: left 0.6s ease;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .card-shine:hover::before {
+    left: 100%;
+  }
+
+  /* Button styles */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm font-display transition-all duration-200;
+    @apply bg-neon-cyan text-void;
+    @apply hover:bg-opacity-90 hover:shadow-neon-cyan;
+    @apply active:scale-95;
+  }
+
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm font-display transition-all duration-200;
+    @apply border border-border text-prose;
+    @apply hover:border-neon-cyan hover:text-neon-cyan hover:bg-neon-cyan/5;
+    @apply active:scale-95;
+  }
+
+  .btn-danger {
+    @apply relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm font-display transition-all duration-200;
+    @apply bg-neon-pink/10 border border-neon-pink/30 text-neon-pink;
+    @apply hover:bg-neon-pink/20 hover:shadow-neon-pink;
+    @apply active:scale-95;
+  }
+
+  /* Input styles */
+  .input-field {
+    @apply w-full bg-surface border border-border rounded-xl px-4 py-3 text-bright placeholder-dim;
+    @apply focus:outline-none focus:border-neon-cyan/50 focus:bg-elevated;
+    @apply transition-all duration-200 text-sm;
+    font-family: var(--font-body);
+  }
+
+  /* Badge styles */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium font-mono;
+  }
+
+  .badge-cyan {
+    @apply badge bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20;
+  }
+
+  .badge-violet {
+    @apply badge bg-neon-violet/10 text-neon-violet border border-neon-violet/20;
+  }
+
+  .badge-pink {
+    @apply badge bg-neon-pink/10 text-neon-pink border border-neon-pink/20;
+  }
+
+  .badge-amber {
+    @apply badge bg-neon-amber/10 text-neon-amber border border-neon-amber/20;
+  }
+
+  .badge-green {
+    @apply badge bg-neon-green/10 text-neon-green border border-neon-green/20;
+  }
+
+  /* Rank badges */
+  .rank-gold {
+    @apply badge bg-rank-gold/10 text-rank-gold border border-rank-gold/30;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+  }
+
+  .rank-silver {
+    @apply badge bg-rank-silver/10 text-rank-silver border border-rank-silver/30;
+  }
+
+  .rank-bronze {
+    @apply badge bg-rank-bronze/10 text-rank-bronze border border-rank-bronze/30;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+
+  /* Scanline effect */
+  .scanlines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  /* Noise overlay */
+  .noise-overlay::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+  }
+
+  /* Truncate multiline */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
