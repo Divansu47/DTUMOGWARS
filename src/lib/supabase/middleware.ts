@@ -12,9 +12,19 @@ export async function updateSession(request: NextRequest) {
         getAll() {
           return request.cookies.getAll()
         },
-        setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
+        setAll(
+          cookiesToSet: {
+            name: string
+            value: string
+            options?: any
+          }[]
+        ) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value)
+          )
+
           supabaseResponse = NextResponse.next({ request })
+
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
           )
@@ -31,9 +41,14 @@ export async function updateSession(request: NextRequest) {
   const protectedPaths = ['/profile', '/explore', '/leaderboard', '/vote']
   const adminPaths = ['/admin']
 
-  const isProtected = protectedPaths.some(p => request.nextUrl.pathname.startsWith(p))
-  const isAdmin = adminPaths.some(p => request.nextUrl.pathname.startsWith(p))
-  const isAuthPage = request.nextUrl.pathname.startsWith('/login') ||
+  const isProtected = protectedPaths.some((p) =>
+    request.nextUrl.pathname.startsWith(p)
+  )
+  const isAdmin = adminPaths.some((p) =>
+    request.nextUrl.pathname.startsWith(p)
+  )
+  const isAuthPage =
+    request.nextUrl.pathname.startsWith('/login') ||
     request.nextUrl.pathname.startsWith('/register')
 
   if (!user && (isProtected || isAdmin)) {
